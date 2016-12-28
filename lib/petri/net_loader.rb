@@ -130,14 +130,14 @@ module Petri
           hash['places'].each do |data|
             net.add_place(guid: data['guid'],
                           identifier: data['identifier'],
-                          start: data['start'],
-                          finish: data['finish'])
+                          start: data['type'] == 'start',
+                          finish: data['type'] == 'finish')
           end
 
           hash['transitions'].each do |data|
             net.add_transition(guid: data['guid'],
                                identifier: data['identifier'],
-                               automated: data['automated'],
+                               automated: data['type'] == 'automated',
                                action: data['action'])
           end
 
